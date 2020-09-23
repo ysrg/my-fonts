@@ -4,7 +4,7 @@ import PropTypes from "prop-types";
 export const Context = React.createContext();
 
 Provider.propTypes = {
-  children: PropTypes.array.isRequired,
+  children: PropTypes.object,
 };
 
 export function Provider({ children }) {

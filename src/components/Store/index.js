@@ -5,13 +5,17 @@ import SqWrapper from "./SqWrapper";
 import SqInner from "./SqInner";
 
 const Store = ({ value: { data, selected, handleCardClick, status } }) => {
+  let localData;
+  try {
+    localData = localStorage.getItem("selectedCard") || "{}";
+  } catch (error) {
+    console.error("Failed to read from localStorage", error);
+  }
   return (
     <>
       {status === "fetched" &&
         data.content.map((item, index) => {
-          const isCardSelected =
-            selected[item.abbr] ||
-            JSON.parse(localStorage.getItem("selectedCard"))[item.abbr];
+          const isCardSelected = selected[item.abbr] || localData;
           return (
             <Card
               onClick={() => handleCardClick(item.abbr, index)}
