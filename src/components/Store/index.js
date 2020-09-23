@@ -15,7 +15,8 @@ const Store = ({ value: { data, selected, handleCardClick, status } }) => {
     <>
       {status === "fetched" &&
         data.content.map((item, index) => {
-          const isCardSelected = selected[item.abbr] || localData;
+          const isCardSelected =
+            selected[item.abbr] || JSON.parse(localData)[item.abbr];
           return (
             <Card
               onClick={() => handleCardClick(item.abbr, index)}
